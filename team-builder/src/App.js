@@ -1,25 +1,70 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
 import './App.css';
+import membersData from './components/data';
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import Form from './components/Form';
 
 function App() {
+  const[members, setMembers] = useState(membersData);
+  
+  function addNewMember(newMember) {
+    members.push(newMember)
+    setMembers(members);
+  }
+
+  console.log(members);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+
+   <Router>
+
+        <Switch>
+
+          <Route exact path = '/'>
+            <div className="App">
+              <header className="title"> 
+                    <h1>TEAM MEMBERS</h1>
+                    <Link to="/newmemberform">
+                      <button className="button" type="submit">Add New Member</button>
+                    </Link>
+              </header>
+
+              {members.map(member => {
+                return(
+                  <div className="members">
+                    <h3>Name: {member.name} </h3>
+                    <p>Email: {member.email} </p>
+                    <p>Role: {member.role} </p>
+                    <p>Quote: {member.quote} </p>
+                  </div>
+                    ) 
+                  })}
+              
+            </div>
+
+            
+              
+          </Route>
+
+          <Route path="/newmemberform" >
+              <Form addNewMember = {addNewMember} members={members}/>
+          </Route>  
+          
+
+        </Switch>
+
+   </Router>
+
+
+      
+
+       
+
+     
+
+      
+    
   );
 }
 
