@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('https://miro.medium.com/max/4000/1*FEk0jO2b0rADpuPJShHjhg.png');
+  background-size: auto;
 }
 
 code {

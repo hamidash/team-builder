@@ -16,7 +16,7 @@ function Form(props) {
     event.preventDefault();
     props.addNewMember(newMember);
     setNewMember({id:"", name:"", role:"", email:"", quote:""});
-    console.log(props.members);
+    
    }
 
     return(
@@ -46,9 +46,9 @@ function Form(props) {
                     </label>
                 </div>
                 
-                <Link to="/">
+                {/* <Link to="/"> */}
                     <button className="form-button"> Submit Form</button>
-                </Link>
+                {/* </Link> */}
                 
             </form>
         </div>

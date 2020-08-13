@@ -7,64 +7,59 @@ import Form from './components/Form';
 function App() {
   const[members, setMembers] = useState(membersData);
   
-  function addNewMember(newMember) {
-    members.push(newMember)
-    setMembers(members);
+  const addNewMember =  (member) => {
+
+    const newMember = {
+      id: member.id,
+      name: member.name,
+      email: member.email,
+      role: member.role,
+      quote: member.quote
+    }
+
+    setMembers([...members, newMember]);
   }
 
   console.log(members);
 
   return (
+
     
 
-   <Router>
+     <Router>
 
         <Switch>
 
-          <Route exact path = '/'>
+          <Route exact path = '/'> 
             <div className="App">
-              <header className="title"> 
-                    <h1>TEAM MEMBERS</h1>
-                    <Link to="/newmemberform">
-                      <button className="button" type="submit">Add New Member</button>
-                    </Link>
-              </header>
+                  <header className="title"> 
+                        <h1>TEAM MEMBERS</h1>
+                        <Link to="/newmemberform">
+                          <button className="button" type="submit">Add New Member</button>
+                        </Link>
+                  </header>
 
-              {members.map(member => {
-                return(
-                  <div className="members">
-                    <h3>Name: {member.name} </h3>
-                    <p>Email: {member.email} </p>
-                    <p>Role: {member.role} </p>
-                    <p>Quote: {member.quote} </p>
-                  </div>
-                    ) 
-                  })}
-              
-            </div>
-
-            
-              
+                  {members.map(member => {
+                    return(
+                      <div className="members">
+                        <h3>Name: {member.name} </h3>
+                        <p>Email: {member.email} </p>
+                        <p>Role: {member.role} </p>
+                        <p>Quote: {member.quote} </p>
+                      </div>
+                        ) 
+                      })}   
+              </div>
           </Route>
 
-          <Route path="/newmemberform" >
-              <Form addNewMember = {addNewMember} members={members}/>
+           <Route path="/newmemberform" > 
+            <Form addNewMember = {addNewMember} members={members}/>
           </Route>  
-          
 
-        </Switch>
+      </Switch>
 
-   </Router>
+  </Router>
 
-
-      
-
-       
-
-     
-
-      
-    
   );
 }
 
